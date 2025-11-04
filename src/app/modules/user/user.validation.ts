@@ -1,17 +1,13 @@
-import { email } from './../../../../node_modules/zod/src/v4/core/regexes';
-import * as z from "zod";
+
+import z from "zod";
 
 const createPatientValidationSchema = z.object({
-  name: z.string(),
-  patient: {
-    name: z.string({
-        error: "Name is required",
-    }),
-    email: z.string({
-        error: "Invalid email address",
-    }),
+  password: z.string(),
+  patient: z.object({
+    name: z.string().nonempty("Name is required"),
+    email: z.string().nonempty("Email is required"),
     address: z.string().optional(),
-  }
+  })
 });
 export const UserValidation = {
     createPatientValidationSchema,
