@@ -1,5 +1,6 @@
 
-import z from "zod";
+import { z } from 'zod';
+
 
 const createPatientValidationSchema = z.object({
   password: z.string(),

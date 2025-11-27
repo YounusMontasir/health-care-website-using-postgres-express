@@ -8,6 +8,12 @@ const generateToken = (payload: object, secret: Secret, expiresIn: string) => {
     return token;
 }
 
+const verifyToken = (token: string, secret: Secret) => {
+    return jwt.verify(token, secret);
+    // return verifiedToken;
+}
+
 export const JwtHelper = {
-    generateToken
+    generateToken,
+    verifyToken
 }

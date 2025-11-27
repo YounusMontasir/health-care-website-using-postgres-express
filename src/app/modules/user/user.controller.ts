@@ -3,6 +3,7 @@ import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
 import { UserService } from "./user.service";
 import { fi } from "zod/v4/locales";
+import { userFilterableFields } from "./user.constant";
 
 const createPatient = catchAsync(async (req, res) => {
    const result = await UserService.createPatient(req);
@@ -26,20 +27,21 @@ sendResponse(res, {
 })
 })
 
-const getAllFromDB = catchAsync(async(req, res)=>{
-    const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
-    const filters = pick(req.query, ['email', 'role', 'status']);
-    const result = await UserService.getAllFromDB(filters, options);
-    sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "All users fetched successfully",
-        data: result
-    })  
-})
+// const getAllFromDB = catchAsync(async(req, res)=>{
+//     const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
+//     const filters = pick(req.query, userFilterableFields);
+//     const result = await UserService.getAllFromDB(filters, options);
+//     sendResponse(res, {
+//         statusCode: 200,
+//         success: true,
+//         message: "All users fetched successfully",
+//         meta: result.meta,
+//         data: result.data
+//     })  
+// })
 
 export const UserController = {
     createPatient,
     createDoctor,
-    getAllFromDB
+    // getAllFromDB
 }

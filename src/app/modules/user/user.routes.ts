@@ -20,6 +20,6 @@ router.post('/create-doctor',
     }
 )
 
-router.get('/all-users', UserController.getAllFromDB)
+// router.get('/all-users', UserController.getAllFromDB)
 
 export const userRoutes = router;
